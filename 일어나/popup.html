@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>일어나! 기지개 알림</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <img
+            class="brand__icon"
+            src="icons/mascot.png"
+            alt=""
+            width="44"
+            height="44"
+          />
+          <div>
+            <h1>일어나!</h1>
+            <p>작은 기지개 친구</p>
+          </div>
+        </div>
+
+        <div class="status-pill" id="statusPill">
+          <span class="status-pill__dot" aria-hidden="true"></span>
+          <span id="statusText">작동 중</span>
+        </div>
+      </header>
+
+      <section class="timer-card" aria-labelledby="timerHeading">
+        <span class="sparkle sparkle--one" aria-hidden="true">✦</span>
+        <span class="sparkle sparkle--two" aria-hidden="true">✿</span>
+        <span class="sparkle sparkle--three" aria-hidden="true">·</span>
+
+        <img
+          class="timer-card__mascot"
+          src="icons/mascot.png"
+          alt="두 팔을 쭉 뻗은 곰돌이"
+          width="76"
+          height="76"
+        />
+        <p class="eyebrow" id="timerHeading">다음 기지개까지</p>
+
+        <div class="timer-ring" id="timerRing">
+          <div class="timer-ring__center">
+            <strong id="countdown" aria-live="off">50:00</strong>
+            <span id="timerCaption">집중할 시간</span>
+          </div>
+        </div>
+
+        <p class="next-time" id="nextTime" aria-live="polite">
+          다음 알림 시간을 확인하고 있어요
+        </p>
+      </section>
+
+      <section class="controls" aria-label="타이머 제어">
+        <button class="button button--primary" id="toggleButton" type="button">
+          <span id="toggleIcon" aria-hidden="true">Ⅱ</span>
+          <span id="toggleLabel">잠시 멈추기</span>
+        </button>
+        <button
+          class="button button--icon"
+          id="resetButton"
+          type="button"
+          aria-label="타이머를 처음부터 다시 시작"
+          title="처음부터 다시"
+        >
+          ↻
+        </button>
+      </section>
+
+      <div class="daily-note">
+        <span aria-hidden="true">🌱</span>
+        <span id="dailyCount">오늘 첫 기지개를 기다리는 중</span>
+      </div>
+
+      <details class="settings-card">
+        <summary>
+          <span>
+            <span aria-hidden="true">⏱</span>
+            알림 간격 바꾸기
+          </span>
+          <span class="chevron" aria-hidden="true">⌄</span>
+        </summary>
+
+        <div class="settings-card__body">
+          <label for="intervalInput">몇 분마다 알려드릴까요?</label>
+          <div class="interval-row">
+            <div class="number-field">
+              <input
+                id="intervalInput"
+                type="number"
+                min="5"
+                max="180"
+                step="1"
+                value="50"
+                inputmode="numeric"
+              />
+              <span>분</span>
+            </div>
+            <button
+              class="button button--small"
+              id="saveIntervalButton"
+              type="button"
+            >
+              적용
+            </button>
+          </div>
+          <p>5분부터 180분까지 설정할 수 있어요.</p>
+        </div>
+      </details>
+
+      <button class="test-button" id="testButton" type="button">
+        <span aria-hidden="true">🔔</span>
+        테스트 알림 보내기
+      </button>
+
+      <p class="footnote">크롬이 켜져 있을 때 곰돌이가 찾아와요.</p>
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
